@@ -11,7 +11,7 @@ start_date = os.environ['START_DATE']
 
 birthday = os.environ['BIRTHDAY']
 
-engage_date = os.environ['ENGAGE_DATE]
+engage_date = os.environ['ENGAGE_DATE']
 
 app_id = os.environ["APP_ID"]
 app_secret = os.environ["APP_SECRET"]
