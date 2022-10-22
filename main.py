@@ -2,6 +2,7 @@ from datetime import date, datetime
 import math
 from wechatpy import WeChatClient
 from wechatpy.client.api import WeChatMessage, WeChatTemplate
+from borax.calendars.lunardate import LunarDate
 import requests
 import os
 import random
@@ -62,7 +63,13 @@ def get_random_color():
 client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
-data = {"love_days":{"value":get_count_love()},"loveAnniversary_left":{"value":get_loveday()},"engage_days":{"value":get_count_engage()},"engageAnniversary_left":{"value":get_engageday()},"birthday_left":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()}}
+data = {"love_days":{"value":get_count_love()},
+        "loveAnniversary_left":{"value":get_loveday()},
+        "engage_days":{"value":get_count_engage()},
+        "engageAnniversary_left":{"value":get_engageday()},
+        "birthday_left":{"value":get_birthday()},
+        "words":{"value":get_words(),
+        "color":get_random_color()}}
 res_baby = wm.send_template(user_id_baby, template_id, data)
 res_fly = wm.send_template(user_id_fly, template_id, data)
 print(res_baby)
