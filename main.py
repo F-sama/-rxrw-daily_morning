@@ -36,10 +36,10 @@ def get_next_birthday():
   today = datetime.today()
   year = int(today.year)
   lunarNext = ZhDate(year, int(birthday[6:7]), int(birthday[9:10]))
-  next = next.to_datetime()
+  next = lunarNext.to_datetime()
   if next < today:
       lunarNext = ZhDate(year + 1, int(birthday[6:7]), int(birthday[9:10]))
-      next = next.to_datetime()
+      next = lunarNext.to_datetime()
   return (next - today).days
 
   #
