@@ -35,20 +35,18 @@ def get_count_engage():
 def get_next_birthday():
   today = datetime.today()
   year = int(today.year)
-  lunarNext = ZhDate(year, int(birthday[6:7]), int(birthday[9:10]))
-  next = lunarNext.to_datetime()
-  if next < today:
-      lunarNext = ZhDate(year + 1, int(birthday[6:7]), int(birthday[9:10]))
-      next = lunarNext.to_datetime()
-  return (next - today).days
-
-  #
+  lunarToday = ZhDate.today()
+  if datetime.now().toordinal() - ZhDate(year, int(birthday[6:7]), int(birthday[9:10])).to_datetime().toordinal() >= 0:
+      return ZhDate(year + 1, int(birthday[6:7]), int(birthday[9:10])).to_datetime().toordinal() - datetime.now().toordinal()
+  return ZhDate(year, int(birthday[6:7]), int(birthday[9:10])).to_datetime().toordinal() - datetime.now().toordinal()
   # today = datetime.today()
   # year = int(today.year)
-  # lunarToday = ZhDate.today()
-  # if datetime.now().toordinal() - ZhDate(year, int(birthday[6:7]), int(birthday[9:10])).to_datetime().toordinal() >= 0:
-  #     return ZhDate(year + 1, int(birthday[6:7]), int(birthday[9:10])).to_datetime().toordinal() - datetime.now().toordinal()
-  # return ZhDate(year, int(birthday[6:7]), int(birthday[9:10])).to_datetime().toordinal() - datetime.now().toordinal()
+  # lunarNext = ZhDate(year, int(birthday[6:7]), int(birthday[9:10]))
+  # next = lunarNext.to_datetime()
+  # if next < today:
+  #     lunarNext = ZhDate(year + 1, int(birthday[6:7]), int(birthday[9:10]))
+  #     next = lunarNext.to_datetime()
+  # return (next - today).days
 
 
 def get_loveAnniversary_left():
