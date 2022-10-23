@@ -36,7 +36,7 @@ def get_next_birthday():
   today = datetime.today()
   year = int(today.year)
   lunarToday = ZhDate.today()
-  if lunarToday - lunarBirthday >= 0:
+  if datetime.now().toordinary() - ZhDate(year, int(birthday[6:7]), int(birthday[9:10])).to_datetime().toordinary() >= 0:
       return ZhDate(year + 1, int(birthday[6:7]), int(birthday[9:10])).to_datetime().toordinary() - datetime.now().toordinary()
   return ZhDate(year, int(birthday[6:7]), int(birthday[9:10])).to_datetime().toordinary() - datetime.now().toordinary()
 
