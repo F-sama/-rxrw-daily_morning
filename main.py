@@ -2,7 +2,7 @@ from datetime import date, datetime
 import math
 from wechatpy import WeChatClient
 from wechatpy.client.api import WeChatMessage, WeChatTemplate
-from borax.calendars.lunardate import LunarDate
+from zhdate import ZhDate
 import requests
 import os
 import random
@@ -32,19 +32,20 @@ def get_count_engage():
   delta = today - datetime.strptime(engage_date, "%Y-%m-%d")
   return delta.days
 
-def get_birthday():
+def get_next_birthday():
+  oneDay = ZhDate(2022, 8, 15).to_datetime()
   next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")
   if next < datetime.now():
     next = next.replace(year=next.year + 1)
   return (next - today).days
 
-def get_loveday():
+def get_loveAnniversary_left():
   next = datetime.strptime(str(date.today().year) + "-" +start_date[5:], "%Y-%m-%d")
   if next < datetime.now():
     next = next.replace(year=next.year + 1)
   return (next - today).days
 
-def get_engageday():
+def get_engageAnniversary_left():
   next = datetime.strptime(str(date.today().year) + "-" + engage_date[5:], "%Y-%m-%d")
   if next < datetime.now():
     next = next.replace(year=next.year + 1)
@@ -64,10 +65,10 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 data = {"love_days":{"value":get_count_love()},
-        "loveAnniversary_left":{"value":get_loveday()},
+        "loveAnniversary_left":{"value": get_loveAnniversary_left()},
         "engage_days":{"value":get_count_engage()},
-        "engageAnniversary_left":{"value":get_engageday()},
-        "birthday_left":{"value":get_birthday()},
+        "engageAnniversary_left":{"value": get_engageAnniversary_left()},
+        "birthday_left":{"value": get_next_birthday()},
         "words":{"value":get_words(),
         "color":get_random_color()}}
 res_baby = wm.send_template(user_id_baby, template_id, data)
