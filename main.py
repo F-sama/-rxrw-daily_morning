@@ -34,7 +34,7 @@ def get_count_engage():
 
 def get_next_birthday():
   today = datetime.today()
-  year = today.year
+  year = int(today.year)
   lunarBirthday = ZhDate(year, birthday[6:7], birthday[9:10])
   lunarToday = ZhDate.today()
   if lunarToday - lunarBirthday < 0:
