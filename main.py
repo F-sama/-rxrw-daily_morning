@@ -33,11 +33,14 @@ def get_count_engage():
   return delta.days
 
 def get_next_birthday():
-  oneDay = ZhDate(2022, 8, 15).to_datetime()
-  next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")
-  if next < datetime.now():
-    next = next.replace(year=next.year + 1)
-  return (next - today).days
+  today = datetime.datetime.today()
+  year = today.year
+  lunarBirthday = ZhDate(year, birthday[6:7], birthday[9:10])
+  lunarToday = ZhDate.today()
+  if lunarToday - lunarBirthday < 0:
+      return lunarToday - lunarBirthday
+  return ZhDate(year + 1, birthday[6:7], birthday[9:10]) - lunarToday
+
 
 def get_loveAnniversary_left():
   next = datetime.strptime(str(date.today().year) + "-" +start_date[5:], "%Y-%m-%d")
