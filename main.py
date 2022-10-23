@@ -38,8 +38,8 @@ def get_next_birthday():
   lunarBirthday = ZhDate(year, int(birthday[6:7]), int(birthday[9:10]))
   lunarToday = ZhDate.today()
   if lunarToday - lunarBirthday >= 0:
-      return lunarToday - lunarBirthday
-  return ZhDate(year + 1, int(birthday[6:7]), int(birthday[9:10])) - lunarToday
+      return ZhDate(year + 1, int(birthday[6:7]), int(birthday[9:10])) - lunarToday
+  return lunarBirthday - lunarToday
 
 
 def get_loveAnniversary_left():
