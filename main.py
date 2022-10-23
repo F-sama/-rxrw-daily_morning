@@ -33,7 +33,7 @@ def get_count_engage():
   return delta.days
 
 def get_next_birthday():
-  today = datetime.datetime.today()
+  today = datetime.today()
   year = today.year
   lunarBirthday = ZhDate(year, birthday[6:7], birthday[9:10])
   lunarToday = ZhDate.today()
